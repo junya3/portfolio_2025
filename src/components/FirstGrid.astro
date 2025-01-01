@@ -1,0 +1,58 @@
+---
+const workItems = [
+  {
+    title: 'coding',
+    href: '/',
+    image: '/images/coding.jpg',
+  },
+  {
+    title: 'coding',
+    href: '/',
+    image: '/images/coding.jpg',
+  },
+  {
+    title: 'coding',
+    href: '/',
+    image: '/images/coding.jpg',
+  },
+  {
+    title: 'coding',
+    href: '/',
+    image: '/images/coding.jpg',
+  },
+];
+---
+
+<section>
+  <div class="grid">
+    {
+      workItems.map((item, index) => (
+        <a
+          href={item.href}
+          class="g_item"
+          style={{ gridArea: `item${index + 1}` }}
+        >
+          <div class="g_item-title">{item.title}</div>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .grid {
+    width: 100%;
+    height: 90vh;
+
+    display: grid;
+    gap: 14px;
+    grid-template-areas:
+      'item1 item2 item3'
+      'item1 item2 item4';
+    div {
+      display: block;
+      height: 100%;
+      background: #ccc;
+    }
+  }
+</style>
