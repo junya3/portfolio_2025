@@ -1,0 +1,33 @@
+@charset "utf-8";
+@font-face {
+  /*フォントの名前*/
+  font-family: "LINESeedJP_OTF";
+  /*フォントファイルへのパス（複数指定の場合、上から順に読み込まれる）*/
+  src: url("/public/fonts/LINESeedJP_OTF_Eb.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  /*フォントの名前*/
+  font-family: "LINESeedJP_OTF";
+  /*フォントファイルへのパス（複数指定の場合、上から順に読み込まれる）*/
+  src: url("/public/fonts/LINESeedJP_OTF_Bd.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  /*フォントの名前*/
+  font-family: "LINESeedJP_OTF";
+  /*フォントファイルへのパス（複数指定の場合、上から順に読み込まれる）*/
+  src: url("/public/fonts/LINESeedJP_OTF_Rg.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  /*フォントの名前*/
+  font-family: "LINESeedJP_OTF";
+  /*フォントファイルへのパス（複数指定の場合、上から順に読み込まれる）*/
+  src: url("/public/fonts/LINESeedJP_OTF_Th.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100;
+}

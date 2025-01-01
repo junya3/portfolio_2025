@@ -1,0 +1,63 @@
+---
+const list = [
+  { href: '/', en: 'home', ja: 'ホーム' },
+  { href: '/blog', en: 'blog', ja: 'ブログ' },
+  { href: '/work', en: 'work', ja: '制作物' },
+  { href: '/contact', en: 'contact', ja: 'お問い合わせ' },
+];
+---
+
+<header>
+  <h1>Hi, I'm Junya03!</h1>
+  <nav>
+    <ul>
+      {
+        list.map((item) => (
+          <li>
+            <a href={item.href}>
+              <p>{item.en}</p>
+              <p>{item.ja}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 2.5rem;
+    padding-block: 0.875rem;
+
+    /* トップで固定 */
+    position: sticky;
+    top: 0;
+
+    border-bottom: 1px solid #efefef;
+
+    font-weight: 900;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  ul {
+    display: flex;
+    gap: 1rem;
+  }
+  li a {
+    display: grid;
+    p {
+      text-align: center;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      text-transform: capitalize;
+      & + p {
+        font-size: 0.75rem;
+      }
+    }
+  }
+</style>
