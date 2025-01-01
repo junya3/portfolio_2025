@@ -42,16 +42,17 @@ const workItems = [
 <style>
   .grid {
     width: 100%;
-    height: 90vh;
+    height: 70vh;
 
     display: grid;
     gap: 14px;
     grid-template-areas:
       'item1 item2 item3'
       'item1 item2 item4';
-    div {
+    .g_item {
       display: block;
-      height: 100%;
+      padding: 1.5rem;
+      border-radius: 0.875rem;
       background: #ccc;
     }
   }
