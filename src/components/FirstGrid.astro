@@ -2,22 +2,22 @@
 const workItems = [
   {
     title: 'coding',
-    href: '/',
+    href: '/work/coding',
     image: '/images/coding.jpg',
   },
   {
-    title: 'coding',
-    href: '/',
+    title: 'design',
+    href: '/work/design',
     image: '/images/coding.jpg',
   },
   {
-    title: 'coding',
-    href: '/',
+    title: 'coffee',
+    href: '/hobby/coffee',
     image: '/images/coding.jpg',
   },
   {
-    title: 'coding',
-    href: '/',
+    title: 'blog',
+    href: '/blog',
     image: '/images/coding.jpg',
   },
 ];
@@ -38,8 +38,8 @@ const workItems = [
     }
   </div>
   <div class="grid-bottom">
-    <div class="g_item"><h3>current time</h3></div>
-    <div class="g_item"><h3>about</h3></div>
+    <a class="g_item" href="/"><h3 class="g_item-title">current time</h3></a>
+    <a class="g_item" href="/"><h3 class="g_item-title">about</h3></a>
   </div>
 </section>
 
@@ -50,19 +50,19 @@ const workItems = [
     height: calc(100vh - 7.25rem);
     display: grid;
     grid-template-rows: 2fr 1fr;
-    gap: 14px;
+    gap: var(--gap);
   }
   .grid-top {
     width: 100%;
     display: grid;
-    gap: 14px;
+    gap: var(--gap);
     grid-template-areas:
       'item1 item2 item3'
       'item1 item2 item4';
   }
   .grid-bottom {
     display: grid;
-    gap: 14px;
+    gap: var(--gap);
     grid-template-columns: repeat(2, 1fr);
   }
   .g_item {
@@ -70,5 +70,10 @@ const workItems = [
     padding: 1.5rem;
     border-radius: 0.875rem;
     background: #ccc;
+  }
+  .g_item-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: capitalize;
   }
 </style>
