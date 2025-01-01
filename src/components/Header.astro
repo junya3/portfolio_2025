@@ -8,7 +8,7 @@ const list = [
 ---
 
 <header>
-  <h1>HI, I'm Junya03!</h1>
+  <h1>Hi, I'm Junya03!</h1>
   <nav>
     <ul>
       {
@@ -30,6 +30,33 @@ const list = [
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 2rem;
+    padding-inline: 2.5rem;
+    padding-block: 0.875rem;
+
+    position: sticky;
+    top: 0;
+
+    border-bottom: 1px solid #efefef;
+
+    font-weight: 900;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  ul {
+    display: flex;
+    gap: 1rem;
+  }
+  li a {
+    display: grid;
+    p {
+      text-align: center;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      text-transform: capitalize;
+      & + p {
+        font-size: 0.75rem;
+      }
+    }
   }
 </style>

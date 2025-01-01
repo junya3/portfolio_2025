@@ -11,14 +11,31 @@ import Footer from '../components/Footer.astro';
     <!-- 後にファビコンを変更 -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/src/assets/css/reset.css" />
+    <link rel="stylesheet" href="/src/assets/css/font.css" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro Basics</title>
   </head>
-  <Header />
   <body>
+    <Header />
     <slot />
+    <Footer />
   </body>
-  <Footer />
 </html>
 
-<style></style>
+<style is:global>
+  html {
+    font-family: 'LINESeedJP_OTF', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+</style>
