@@ -1,0 +1,32 @@
+---
+// mdファイルを読み込むための型定義
+interface Frontmatter {
+  title: string;
+  description?: string;
+  tags: string;
+}
+
+// titleやurlを取得
+const { title, url } = Astro.props;
+
+// mdファイルを取得
+const items = await Astro.glob<Frontmatter>('../pages/work/coding/*.md');
+
+// タグを取得
+const uniqueTags = Array.from(
+  // new Setで重複を削除
+  new Set(items.map((tag) => tag.frontmatter.tags))
+);
+---
+
+<h3><a href={url}>{title}</a></h3>
+<!-- タグの表示 -->
+<ul>
+  {
+    uniqueTags.map((tag) => (
+      <li>
+        <a href={tag}>{tag}</a>
+      </li>
+    ))
+  }
+</ul>

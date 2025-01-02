@@ -1,8 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FirstGrid from '../components/FirstGrid.astro';
+import CodingTags from '../components/codingTags.astro';
 ---
 
 <Layout title="トップページ">
   <FirstGrid />
+  <section id="tags">
+    <CodingTags title="coding" url="/src/pages/work/coding/" />
+    <CodingTags title="coding" url="/src/pages/work/coding/" />
+    <CodingTags title="coding" url="/src/pages/work/coding/" />
+  </section>
 </Layout>
+
+<style>
+  #tags {
+    display: flex;
+  }
+</style>
