@@ -10,7 +10,7 @@ interface Frontmatter {
 const { title, url } = Astro.props;
 
 // mdファイルを取得
-const items = await Astro.glob<Frontmatter>('../pages/work/coding/*.md');
+const items = await Astro.glob<Frontmatter>('../pages/work/design/*.md');
 
 // タグを取得
 const tags = [...new Set(items.map((item) => item.frontmatter.tags).flat())];
