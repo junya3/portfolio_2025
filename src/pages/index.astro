@@ -10,13 +10,62 @@ import DesignTags from '/src/components/DesignTags.astro';
   <FirstGrid />
   <section id="tags">
     <CodingTags title="coding" url="/src/pages/work/coding/" />
+    <hr />
     <DesignTags title="design" url="/src/pages/work/coding/" />
+    <hr />
     <BlogTags title="blog" url="/src/pages/work/coding/" />
   </section>
 </Layout>
 
 <style>
+  /* タグのスタイリング */
   #tags {
     display: flex;
+    .tag-wrap {
+      display: grid;
+      grid-template-rows: repeat(2, min-content);
+      gap: var(--gap);
+      flex: 1;
+      padding-inline: 2rem;
+
+      h3 {
+        font-size: 1.5rem;
+        text-transform: capitalize;
+        font-weight: 600;
+        &::before {
+          counter-increment: number 1;
+          content: counter(number) '.';
+        }
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--gap);
+
+        li {
+          a {
+            display: inline-block;
+            inline-size: fit-content;
+            font-size: 0.875rem;
+            font-weight: 400;
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            border-radius: 999px;
+            transition:
+              color 0.3s,
+              background 0.3s;
+
+            &:hover {
+              background: #333;
+              text-decoration: none;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+  body {
+    counter-increment: number 0;
   }
 </style>

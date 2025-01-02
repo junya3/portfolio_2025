@@ -1,6 +1,6 @@
 ---
 title: テスト投稿
-tags: CSS
+tags: web
 ---
 
 ## テストです

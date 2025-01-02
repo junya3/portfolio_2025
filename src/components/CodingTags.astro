@@ -12,18 +12,32 @@ const { title, url } = Astro.props;
 // mdファイルを取得
 const items = await Astro.glob<Frontmatter>('../pages/work/coding/*.md');
 
-// タグを取得
-const tags = [...new Set(items.map((item) => item.frontmatter.tags).flat())];
+// タグを取得（フラット化してセットにして重複を排除）
+const allTags = items.map((item) => item.frontmatter.tags).flat();
+
+// タグの出現頻度をカウント
+const tagFrequency: Record<string, number> = {};
+allTags.forEach((tag) => {
+  tagFrequency[tag] = (tagFrequency[tag] || 0) + 1;
+});
+
+// 頻度順にソートして、上位6個のタグを取得
+const topTags = Object.entries(tagFrequency)
+  .sort(([, countA], [, countB]) => countB - countA) // 出現頻度で降順ソート
+  .slice(0, 6) // 上位6個を取得
+  .map(([tag]) => tag); // タグ名だけを抽出
 ---
 
-<h3><a href={url}>{title}Tags</a></h3>
-<!-- タグの表示 -->
-<ul>
-  {
-    tags.map((tag) => (
-      <li>
-        <a href={`/${tag}`}>{tag}</a>
-      </li>
-    ))
-  }
-</ul>
+<div class="tag-wrap">
+  <h3><a href={url}>{title} Tags</a></h3>
+  <!-- タグの表示 -->
+  <ul>
+    {
+      topTags.map((tag) => (
+        <li>
+          <a href={`/${tag}`}>{tag}</a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
