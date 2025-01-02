@@ -18,6 +18,10 @@ import DesignTags from '/src/components/DesignTags.astro';
 </Layout>
 
 <style>
+  body {
+    /* countの設定 */
+    counter-increment: number 0;
+  }
   /* タグのスタイリング */
   #tags {
     display: flex;
@@ -64,8 +68,5 @@ import DesignTags from '/src/components/DesignTags.astro';
         }
       }
     }
-  }
-  body {
-    counter-increment: number 0;
   }
 </style>
