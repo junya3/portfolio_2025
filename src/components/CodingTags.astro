@@ -13,19 +13,16 @@ const { title, url } = Astro.props;
 const items = await Astro.glob<Frontmatter>('../pages/work/coding/*.md');
 
 // タグを取得
-const uniqueTags = Array.from(
-  // new Setで重複を削除
-  new Set(items.map((tag) => tag.frontmatter.tags))
-);
+const tags = [...new Set(items.map((item) => item.frontmatter.tags).flat())];
 ---
 
 <h3><a href={url}>{title}</a></h3>
 <!-- タグの表示 -->
 <ul>
   {
-    uniqueTags.map((tag) => (
+    tags.map((tag) => (
       <li>
-        <a href={tag}>{tag}</a>
+        <a href={`/${tag}`}>{tag}</a>
       </li>
     ))
   }

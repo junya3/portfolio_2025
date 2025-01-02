@@ -1,0 +1,43 @@
+---
+export async function getStaticPaths() {
+  // getStaticPaths()はお約束
+  const allPosts = await Astro.glob('../**/*.md');
+  const uniqueTags: any = [
+    ...new Set(allPosts.map((item) => item.frontmatter.tags).flat()),
+    // 新しく配列として生成する
+  ];
+  return uniqueTags.map((tag: any) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.frontmatter.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const filteredPosts = Astro.props.posts;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>タグ：{tag}の一覧</h1>
+    <ul>
+      {
+        filteredPosts.map((post) => (
+          <li>
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </body>
+</html>
