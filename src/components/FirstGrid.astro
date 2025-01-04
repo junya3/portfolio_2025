@@ -4,27 +4,27 @@ const workItems = [
     title: 'coding',
     href: '/work/coding',
     image: '/images/coding.jpg',
-    discription:
+    description:
       'Webサイトを制作することができます。ここでは制作した作品を閲覧することができます。',
   },
   {
     title: 'design',
     href: '/work/design',
     image: '/images/coding.jpg',
-    discription:
+    description:
       'Webデザインやロゴの制作を行うことができます。ここでは制作した作品を閲覧することができます。',
   },
   {
     title: 'coffee',
     href: '/hobby/coffee',
     image: '/images/coding.jpg',
-    discription: 'コーヒー豆の焙煎や抽出方法についての情報を発信しています。',
+    description: 'コーヒー豆の焙煎や抽出方法についての情報を発信しています。',
   },
   {
     title: 'blog',
     href: '/blog',
     image: '/images/coding.jpg',
-    discription: '日々の学びや制作物についての情報を発信しています。',
+    description: '日々の学びや制作物についての情報を発信しています。',
   },
 ];
 ---
@@ -39,7 +39,7 @@ const workItems = [
           style={{ gridArea: `item${index + 1}` }}
         >
           <h3 class="g_item-title">{item.title}</h3>
-          <p class="discription">{item.discription}</p>
+          <p class="discription">{item.description}</p>
         </a>
       ))
     }

@@ -1,0 +1,17 @@
+---
+// Import JSON data
+import skills from '../data/skill.json';
+---
+
+<ul>
+  {
+    skills.skill.map((item) => (
+      <li>
+        <a href={item.href}>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </a>
+      </li>
+    ))
+  }
+</ul>
