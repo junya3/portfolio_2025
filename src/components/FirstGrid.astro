@@ -4,27 +4,27 @@ const workItems = [
     title: 'coding',
     href: '/work/coding',
     image: '/images/coding.jpg',
-    discription:
+    description:
       'Webサイトを制作することができます。ここでは制作した作品を閲覧することができます。',
   },
   {
     title: 'design',
     href: '/work/design',
     image: '/images/coding.jpg',
-    discription:
+    description:
       'Webデザインやロゴの制作を行うことができます。ここでは制作した作品を閲覧することができます。',
   },
   {
     title: 'coffee',
     href: '/hobby/coffee',
     image: '/images/coding.jpg',
-    discription: 'コーヒー豆の焙煎や抽出方法についての情報を発信しています。',
+    description: 'コーヒー豆の焙煎や抽出方法についての情報を発信しています。',
   },
   {
     title: 'blog',
     href: '/blog',
     image: '/images/coding.jpg',
-    discription: '日々の学びや制作物についての情報を発信しています。',
+    description: '日々の学びや制作物についての情報を発信しています。',
   },
 ];
 ---
@@ -39,13 +39,15 @@ const workItems = [
           style={{ gridArea: `item${index + 1}` }}
         >
           <h3 class="g_item-title">{item.title}</h3>
-          <p class="discription">{item.discription}</p>
+          <p class="discription">{item.description}</p>
         </a>
       ))
     }
   </div>
   <div class="grid-bottom">
-    <a class="g_item" href="/"><h3 class="g_item-title">current time</h3></a>
+    <div class="g_item">
+      <h3 class="g_item-title">current time</h3>
+    </div>
     <a class="g_item" href="/">
       <h3 class="g_item-title">about</h3>
       <p class="discription">私について</p>
@@ -55,7 +57,9 @@ const workItems = [
 
 <style>
   .first-grid {
-    width: stretch;
+    /* まだ試験的な値でした */
+    /* width: stretch; */
+    width: auto;
     /* 画面幅 - (ヘッダー高さ(padding＋h1) + main余白)) */
     height: calc(100vh - 7.25rem);
     display: grid;

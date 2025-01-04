@@ -1,0 +1,81 @@
+---
+// Import JSON data
+import skills from '../data/skill.json';
+// Import Image component
+import { Image } from 'astro:assets';
+---
+
+<ul>
+  {
+    // ループ処理
+    skills.skill.map((item) => (
+      <li>
+        <Image src={item.image} alt={item.title} width="1280" height="720" />
+        <a href={item.href}>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+    li {
+      width: auto;
+      overflow: hidden;
+      border-radius: 0.875rem;
+      position: relative;
+      img {
+        width: 100%;
+        object-fit: cover;
+        position: absolute;
+        z-index: 0;
+        margin: auto;
+        inset: 0;
+        transition: scale 0.3s;
+        &:has(+ a:hover),
+        &:has(+ a:focus) {
+          scale: 1.05;
+        }
+      }
+      a {
+        height: 300px;
+        padding: 1.5rem;
+        display: grid;
+        /* place-contentで中の要素を広げる */
+        place-content: space-between;
+        /* #0000は透明(#000まではカラー、0は透明度) */
+        background: color-mix(in srgb, #000 50%, #0000);
+        backdrop-filter: blur(2px);
+        color: #fff;
+        font-weight: 600;
+        line-height: 1.5;
+
+        position: relative;
+        z-index: 1;
+
+        transition:
+          background 0.3s,
+          backdrop-filter 0.3s;
+
+        &:hover,
+        &:focus {
+          background: color-mix(in srgb, #000 30%, #0000);
+          backdrop-filter: blur(0);
+          text-decoration: none;
+        }
+      }
+    }
+
+    h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+  }
+</style>

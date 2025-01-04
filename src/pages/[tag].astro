@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '/src/layouts/Layout.astro';
 
 export async function getStaticPaths() {
   // getStaticPaths()はお約束
-  const allPosts = await Astro.glob('../**/*.md');
+  const allPosts = await Astro.glob('/src/pages/**/*.md');
   const uniqueTags: any = [
     ...new Set(allPosts.map((item) => item.frontmatter.tags).flat()),
     // 新しく配列として生成する
