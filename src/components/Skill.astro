@@ -1,11 +1,13 @@
 ---
 // Import JSON data
 import skills from '../data/skill.json';
+// Import Image component
 import { Image } from 'astro:assets';
 ---
 
 <ul>
   {
+    // ループ処理
     skills.skill.map((item) => (
       <li>
         <Image src={item.image} alt={item.title} width="1280" height="720" />
@@ -45,7 +47,9 @@ import { Image } from 'astro:assets';
         height: 300px;
         padding: 1.5rem;
         display: grid;
+        /* place-contentで中の要素を広げる */
         place-content: space-between;
+        /* #0000は透明(#000まではカラー、0は透明度) */
         background: color-mix(in srgb, #000 50%, #0000);
         backdrop-filter: blur(2px);
         color: #fff;
