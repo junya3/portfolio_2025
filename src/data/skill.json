@@ -2,20 +2,20 @@
     "skill":[
         { 
             "title": "フロントエンド開発",
-            "href":"a",
-            "image":"a",
+            "href":"",
+            "image":"",
             "description":"基本的な静的なサイトからAstroを用いたブログサイトなど幅広く対応可能です。"
         },
         {
             "title":"Webデザイン",
-            "href":"a",
-            "image":"a",
+            "href":"",
+            "image":"",
             "description":"Figmaを用いて、ユーザーのニーズに答える直感的なUIデザインを制作することができます。"
         },
         {
             "title":"コーヒーを淹れる",
-            "href":"a",
-            "image":"a",
+            "href":"",
+            "image":"",
             "description":"日常的に焙煎や抽出を行い、ラテアートのスキルも持っています。"
         }
 
