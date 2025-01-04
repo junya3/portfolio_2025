@@ -4,6 +4,7 @@ import FirstGrid from '../components/FirstGrid.astro';
 import CodingTags from '/src/components/CodingTags.astro';
 import BlogTags from '/src/components/BlogTags.astro';
 import DesignTags from '/src/components/DesignTags.astro';
+import SecTitle from '../components/SecTitle.astro';
 ---
 
 <Layout title="トップページ">
@@ -14,6 +15,9 @@ import DesignTags from '/src/components/DesignTags.astro';
     <DesignTags title="design" url="/src/pages/work/coding/" />
     <hr />
     <BlogTags title="blog" url="/src/pages/work/coding/" />
+  </section>
+  <section>
+    <SecTitle>私にできること</SecTitle>
   </section>
 </Layout>
 
