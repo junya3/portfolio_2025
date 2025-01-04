@@ -2,6 +2,7 @@ import image01 from '/src/assets/image/skill01.png';
 import image02 from '/src/assets/image/skill02.png';
 import image03 from '/src/assets/image/skill03.png';
 
+// JSONデータ形式の確認: .js形式ならexport defaultが必要。
 export default {
   skill: [
     {
