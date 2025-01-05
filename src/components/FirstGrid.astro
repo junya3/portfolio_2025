@@ -1,114 +1,19 @@
 ---
-import Clock from '/src/components/Clock.astro';
-
-const workItems = [
-  {
-    title: 'coding',
-    href: '/work/coding',
-    image: '/images/coding.jpg',
-    description:
-      'Webサイトを制作することができます。ここでは制作した作品を閲覧することができます。',
-  },
-  {
-    title: 'design',
-    href: '/work/design',
-    image: '/images/coding.jpg',
-    description:
-      'Webデザインやロゴの制作を行うことができます。ここでは制作した作品を閲覧することができます。',
-  },
-  {
-    title: 'coffee',
-    href: '/hobby/coffee',
-    image: '/images/coding.jpg',
-    description: 'コーヒー豆の焙煎や抽出方法についての情報を発信しています。',
-  },
-  {
-    title: 'blog',
-    href: '/blog',
-    image: '/images/coding.jpg',
-    description: '日々の学びや制作物についての情報を発信しています。',
-  },
-  {
-    title: 'about',
-    href: '/about',
-    image: '/images/coding.jpg',
-    description: '私について',
-  },
-];
+const comment =
+  'ただコーヒーが好きなだけのエンジニアです。Web制作やデザイン、コーヒー豆の焙煎や抽出方法についての情報を発信しています。キービジュアルを作るのが苦手で…考え途中です。';
+import { Image } from 'astro:assets';
 ---
 
 <section>
-  <p class="comment">
-    ただコーヒーが好きなだけのエンジニアです。Web制作やデザイン、コーヒー豆の焙煎や抽出方法についての情報を発信しています。<br
-    />
-    キービジュアルは模索中です。
-  </p>
-</section>
-<section class="first-grid">
-  {
-    workItems.map((item, index) => (
-      <a href={item.href} class="g_item">
-        <h3 class="g_item-title">{item.title}</h3>
-        <p class="discription">{item.description}</p>
-      </a>
-    ))
-  }
+  <h2>
+    制作者コメント：<br />
+    {comment}
+  </h2>
+  <div class="image-wrap"></div>
 </section>
 
 <style>
-  .comment {
-    font-size: 1rem;
+  h2 {
     line-height: 1.5;
-  }
-  .first-grid {
-    /* まだ試験的な値でした */
-    /* width: stretch; */
-    width: auto;
-    display: flex;
-    gap: var(--gap);
-    grid-template-columns: repeat(5, 1fr);
-    .g_item {
-      flex: 1;
-      height: 300px;
-      display: grid;
-      padding: 1.5rem;
-      border-radius: 0.875rem;
-      background: #ccc;
-      overflow: hidden;
-      align-content: space-between;
-      transition: flex 0.3s;
-
-      &:hover {
-        text-decoration: none;
-        flex: 5;
-        .discription {
-          color: #000;
-
-          transition: color 0.3s;
-          transition-delay: 0.3s;
-        }
-      }
-
-      .discription {
-        font-size: 1rem;
-        line-height: 1.5;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        color: #0000;
-        transition: color 0.1s;
-      }
-
-      p {
-        font-weight: 400;
-      }
-    }
-    .g_item-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      text-transform: capitalize;
-      margin-bottom: 1rem;
-    }
   }
 </style>
