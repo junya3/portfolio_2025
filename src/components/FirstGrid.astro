@@ -38,7 +38,11 @@ const workItems = [
 ---
 
 <section>
-  ただコーヒーが好きなだけのエンジニアです。Web制作やデザイン、コーヒー豆の焙煎や抽出方法についての情報を発信しています。
+  <p class="comment">
+    ただコーヒーが好きなだけのエンジニアです。Web制作やデザイン、コーヒー豆の焙煎や抽出方法についての情報を発信しています。<br
+    />
+    キービジュアルは模索中です。
+  </p>
 </section>
 <section class="first-grid">
   {
@@ -52,6 +56,10 @@ const workItems = [
 </section>
 
 <style>
+  .comment {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
   .first-grid {
     /* まだ試験的な値でした */
     /* width: stretch; */
@@ -72,7 +80,7 @@ const workItems = [
 
       &:hover {
         text-decoration: none;
-        flex: 4;
+        flex: 5;
         .discription {
           color: #000;
 
