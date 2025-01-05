@@ -1,4 +1,6 @@
 ---
+import Clock from '/src/components/Clock.astro';
+
 const workItems = [
   {
     title: 'coding',
@@ -47,6 +49,7 @@ const workItems = [
   <div class="grid-bottom">
     <div class="g_item">
       <h3 class="g_item-title">current time</h3>
+      <Clock />
     </div>
     <a class="g_item" href="/">
       <h3 class="g_item-title">about</h3>
