@@ -7,21 +7,21 @@ export default {
   skill: [
     {
       title: 'フロントエンド開発',
-      href: '',
+      href: '/',
       image: image01,
       description:
         '基本的な静的なサイトからAstroを用いたブログサイトなど幅広く対応可能です。',
     },
     {
       title: 'Webデザイン',
-      href: '',
+      href: '/',
       image: image02,
       description:
         'Figmaを用いて、ユーザーのニーズに答える直感的なUIデザインを制作することができます。',
     },
     {
       title: 'コーヒーを淹れる',
-      href: '',
+      href: '/',
       image: image03,
       description:
         '日常的に焙煎や抽出を行い、ラテアートのスキルも持っています。',

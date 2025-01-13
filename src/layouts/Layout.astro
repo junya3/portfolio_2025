@@ -4,6 +4,7 @@ import '/src/assets/css/font.css';
 
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,7 +14,7 @@ import Footer from '../components/Footer.astro';
     <meta name="viewport" content="width=device-width" />
     <!-- 後にファビコンを変更 -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Astro Basics</title>
+    <title>Junya03 | {title}</title>
   </head>
   <body>
     <Header />
@@ -34,6 +35,7 @@ import Footer from '../components/Footer.astro';
     font-weight: 600;
     font-style: normal;
     line-height: 1.5;
+    letter-spacing: 0.04;
     box-sizing: border-box;
     scroll-behavior: smooth;
 
@@ -59,5 +61,32 @@ import Footer from '../components/Footer.astro';
 
   section {
     padding-inline: 2.5rem;
+  }
+
+  .grid-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    li a {
+      display: grid;
+      gap: 0.5rem;
+      img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #ccc;
+        border-radius: 0.5rem;
+      }
+      h3 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 0.875rem;
+        font-weight: 400;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+    }
   }
 </style>

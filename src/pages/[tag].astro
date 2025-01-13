@@ -2,16 +2,19 @@
 import Layout from '/src/layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  // getStaticPaths()はお約束
-  const allPosts = await Astro.glob('/src/pages/**/*.md');
+  const allPosts = await Astro.glob('/src/pages/**/*.mdx');
   const uniqueTags: any = [
     ...new Set(allPosts.map((item) => item.frontmatter.tags).flat()),
-    // 新しく配列として生成する
   ];
+
   return uniqueTags.map((tag: any) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.frontmatter.tags.includes(tag)
-    );
+    const filteredPosts = allPosts
+      .filter((post) => post.frontmatter.tags.includes(tag))
+      .sort(
+        (a, b) =>
+          new Date(b.frontmatter.date).getTime() -
+          new Date(a.frontmatter.date).getTime()
+      );
     return {
       params: { tag },
       props: { posts: filteredPosts },
@@ -23,15 +26,31 @@ const { tag } = Astro.params;
 const filteredPosts = Astro.props.posts;
 ---
 
-<Layout title={`タグ：${tag}の一覧`}>
-  <h1>タグ：{tag}の一覧</h1>
-  <ul>
-    {
-      filteredPosts.map((post: any) => (
-        <li>
-          <a href={post.url}>{post.frontmatter.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+<Layout title={`${tag}の一覧`}>
+  <section>
+    <h1>{tag}についての記事</h1>
+    <ul class="grid-items">
+      {
+        filteredPosts.map((post: any) => (
+          <li>
+            <a href={post.url}>
+              <img
+                src={post.frontmatter.image}
+                alt={`${post.frontmatter.title}の画像`}
+              />
+              <h3>{post.frontmatter.title}</h3>
+              <p>{post.frontmatter.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+</style>

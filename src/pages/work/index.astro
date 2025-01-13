@@ -1,0 +1,48 @@
+---
+import Layout from '/src/layouts/Layout.astro';
+
+interface Frontmatter {
+  title: string;
+  description?: string;
+  tags: string[];
+  date: string;
+  image: string;
+}
+
+const blogs = (await Astro.glob<Frontmatter>('/src/pages/work/**/*.mdx')).sort(
+  (a, b) =>
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+);
+
+const title = '作品一覧';
+---
+
+<Layout title={title}>
+  <section>
+    <h2>{title}</h2>
+    <ul class="grid-items">
+      {
+        blogs.map((blog) => (
+          <li>
+            <a href={blog.url}>
+              <img
+                src={blog.frontmatter.image}
+                alt={`${blog.frontmatter.title}の画像`}
+              />
+              <h3>{blog.frontmatter.title}</h3>
+              <p>{blog.frontmatter.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+</style>
