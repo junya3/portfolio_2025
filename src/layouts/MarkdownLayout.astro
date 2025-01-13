@@ -20,7 +20,9 @@ const { frontmatter } = Astro.props;
     <Header />
     <main>
       <article>
-        <img src={frontmatter.image} alt="" />
+        <!-- ここに挿入したい -->
+        <img src={frontmatter.image} alt={frontmatter.title} />
+
         <hgroup>
           <h2>{frontmatter.title}</h2>
           <p class="hash">
