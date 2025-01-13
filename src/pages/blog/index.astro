@@ -31,6 +31,11 @@ const title = 'ブログ一覧';
                 alt={`${blog.frontmatter.title}の画像`}
               />
               <h3>{blog.frontmatter.title}</h3>
+              <p>
+                {blog.frontmatter.tags.map((tag) => {
+                  <span>{tag}</span>;
+                })}
+              </p>
               <p>{blog.frontmatter.description}</p>
             </a>
           </li>
