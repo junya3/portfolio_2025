@@ -1,0 +1,34 @@
+---
+import Layout from '/src/layouts/Layout.astro';
+
+interface Frontmatter {
+  title: string;
+  description?: string;
+  tags: string;
+}
+
+const blogs = await Astro.glob<Frontmatter>('/src/pages/blog/*.mdx');
+const title = 'blog一覧';
+---
+
+<Layout title={title}>
+  <section>
+    <h2>{title}</h2>
+    <ul class="grid-items">
+      {
+        blogs.map((blog) => (
+          <li>
+            <a href={blog.url}>
+              <img
+                src={blog.frontmatter.image}
+                alt={`${blog.frontmatter.title}の画像`}
+              />
+              <h3>{blog.frontmatter.title}</h3>
+              <p>{blog.frontmatter.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

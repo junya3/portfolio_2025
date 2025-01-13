@@ -29,7 +29,7 @@ const filteredPosts = Astro.props.posts;
 <Layout title={`${tag}の一覧`}>
   <section>
     <h1>{tag}についての記事</h1>
-    <ul>
+    <ul class="grid-items">
       {
         filteredPosts.map((post: any) => (
           <li>
@@ -52,31 +52,5 @@ const filteredPosts = Astro.props.posts;
   section {
     display: grid;
     gap: 1rem;
-  }
-  ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-    li a {
-      display: grid;
-      gap: 0.5rem;
-      img {
-        width: 100%;
-        aspect-ratio: 16/9;
-        background: #ccc;
-        border-radius: 0.5rem;
-      }
-      h3 {
-        font-size: 1rem;
-      }
-      p {
-        font-size: 0.875rem;
-        font-weight: 400;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-    }
   }
 </style>
