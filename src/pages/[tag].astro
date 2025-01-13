@@ -2,16 +2,19 @@
 import Layout from '/src/layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  // getStaticPaths()はお約束
   const allPosts = await Astro.glob('/src/pages/**/*.mdx');
   const uniqueTags: any = [
     ...new Set(allPosts.map((item) => item.frontmatter.tags).flat()),
-    // 新しく配列として生成する
   ];
+
   return uniqueTags.map((tag: any) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.frontmatter.tags.includes(tag)
-    );
+    const filteredPosts = allPosts
+      .filter((post) => post.frontmatter.tags.includes(tag))
+      .sort(
+        (a, b) =>
+          new Date(b.frontmatter.date).getTime() -
+          new Date(a.frontmatter.date).getTime()
+      );
     return {
       params: { tag },
       props: { posts: filteredPosts },
