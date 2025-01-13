@@ -10,7 +10,7 @@ interface Frontmatter {
 const { title, url } = Astro.props;
 
 // mdファイルを取得
-const items = await Astro.glob<Frontmatter>('/src/pages/work/design/*.md');
+const items = await Astro.glob<Frontmatter>('/src/pages/work/design/*.mdx');
 
 // タグを取得（フラット化してセットにして重複を排除）
 const allTags = items.map((item) => item.frontmatter.tags).flat();

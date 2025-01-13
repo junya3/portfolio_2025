@@ -20,21 +20,31 @@ const { frontmatter } = Astro.props;
     <Header />
     <main>
       <article>
-        <slot />
+        <img src={frontmatter.image} alt="" />
+        <hgroup>
+          <h2>{frontmatter.title}</h2>
+          <p class="hash">
+            {frontmatter.tags.map((tag: any) => <a href={`/${tag}`}>{tag}</a>)}
+          </p>
+          <p>{frontmatter.date}</p>
+        </hgroup>
+        <div class="contents">
+          <slot />
+        </div>
       </article>
     </main>
     <Footer />
   </body>
 </html>
 
-<style is:global>
+<style is:inline>
   :root {
     --gap: 0.75rem;
   }
 
   html {
     font-family: 'LINESeedJP_OTF', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     font-style: normal;
     line-height: 1.5;
     box-sizing: border-box;
@@ -42,13 +52,24 @@ const { frontmatter } = Astro.props;
 
     background: #efefef;
   }
-
-  body {
-  }
   main {
     padding-block: 1.5rem;
     display: grid;
     gap: 3.75rem;
+  }
+  article {
+    width: min(100%, 600px);
+    padding-inline: 2.5rem;
+    margin-inline: auto;
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    padding-bottom: 1rem;
+  }
+  .contents img {
+    padding-block: 2rem;
   }
 
   a {
@@ -59,8 +80,41 @@ const { frontmatter } = Astro.props;
       text-decoration: underline;
     }
   }
+  p {
+    line-height: 2;
+  }
 
-  section {
-    padding-inline: 2.5rem;
+  h2 {
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 1rem;
+    margin-block: 1rem;
+    border-left: 8px solid;
+    border-bottom: 1px solid;
+  }
+
+  strong {
+    padding: 0 0.5em;
+    background: #000;
+    color: #fff;
+  }
+
+  .hash {
+    display: flex;
+    gap: 0.5rem;
+    padding-bottom: 0;
+    font-weight: 400;
+    a {
+      font-size: 0.75rem;
+      &::before {
+        content: '#';
+      }
+    }
   }
 </style>

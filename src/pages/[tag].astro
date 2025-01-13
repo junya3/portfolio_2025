@@ -3,7 +3,7 @@ import Layout from '/src/layouts/Layout.astro';
 
 export async function getStaticPaths() {
   // getStaticPaths()はお約束
-  const allPosts = await Astro.glob('/src/pages/**/*.md');
+  const allPosts = await Astro.glob('/src/pages/**/*.mdx');
   const uniqueTags: any = [
     ...new Set(allPosts.map((item) => item.frontmatter.tags).flat()),
     // 新しく配列として生成する
@@ -35,7 +35,8 @@ const filteredPosts = Astro.props.posts;
                 src={post.frontmatter.image}
                 alt={`${post.frontmatter.title}の画像`}
               />
-              {post.frontmatter.title}
+              <h3>{post.frontmatter.title}</h3>
+              <p>{post.frontmatter.description}</p>
             </a>
           </li>
         ))
@@ -61,6 +62,17 @@ const filteredPosts = Astro.props.posts;
         aspect-ratio: 16/9;
         background: #ccc;
         border-radius: 0.5rem;
+      }
+      h3 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 0.875rem;
+        font-weight: 400;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
     }
   }
