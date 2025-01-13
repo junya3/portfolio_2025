@@ -9,13 +9,13 @@ interface Frontmatter {
   image: string;
 }
 
-const blogs = (await Astro.glob<Frontmatter>('/src/pages/blog/*.mdx')).sort(
+const blogs = (await Astro.glob<Frontmatter>('/src/pages/work/**/*.mdx')).sort(
   (a, b) =>
     new Date(b.frontmatter.date).getTime() -
     new Date(a.frontmatter.date).getTime()
 );
 
-const title = 'ブログ一覧';
+const title = '作品一覧';
 ---
 
 <Layout title={title}>

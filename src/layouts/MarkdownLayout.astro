@@ -26,7 +26,7 @@ const { frontmatter } = Astro.props;
           <p class="hash">
             {frontmatter.tags.map((tag: any) => <a href={`/${tag}`}>{tag}</a>)}
           </p>
-          <p>{frontmatter.date}</p>
+          <p class="date">{frontmatter.date}</p>
         </hgroup>
         <div class="contents">
           <slot />
@@ -47,6 +47,7 @@ const { frontmatter } = Astro.props;
     font-weight: 400;
     font-style: normal;
     line-height: 1.5;
+    letter-spacing: 0.04;
     box-sizing: border-box;
     scroll-behavior: smooth;
 
@@ -84,6 +85,10 @@ const { frontmatter } = Astro.props;
     line-height: 2;
   }
 
+  hgroup {
+    padding-bottom: 1rem;
+  }
+
   h2 {
     font-size: 1.5rem;
     padding-bottom: 1rem;
@@ -116,5 +121,8 @@ const { frontmatter } = Astro.props;
         content: '#';
       }
     }
+  }
+  .date {
+    font-size: 0.75rem;
   }
 </style>
