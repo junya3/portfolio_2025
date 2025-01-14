@@ -1,5 +1,6 @@
 ---
 import Layout from '/src/layouts/Layout.astro';
+import GridItems from '../../components/GridItems.astro';
 
 interface Frontmatter {
   title: string;
@@ -9,7 +10,7 @@ interface Frontmatter {
   image: string;
 }
 
-const blogs = (await Astro.glob<Frontmatter>('/src/pages/blog/*.mdx')).sort(
+const contents = (await Astro.glob<Frontmatter>('/src/pages/blog/*.mdx')).sort(
   (a, b) =>
     new Date(b.frontmatter.date).getTime() -
     new Date(a.frontmatter.date).getTime()
@@ -21,27 +22,7 @@ const title = 'ブログ一覧';
 <Layout title={title}>
   <section>
     <h2>{title}</h2>
-    <ul class="grid-items">
-      {
-        blogs.map((blog) => (
-          <li>
-            <a href={blog.url}>
-              <img
-                src={blog.frontmatter.image}
-                alt={`${blog.frontmatter.title}の画像`}
-              />
-              <h3>{blog.frontmatter.title}</h3>
-              <p class="tags">
-                {blog.frontmatter.tags.map((tag) => (
-                  <span class="tag">{tag}</span>
-                ))}
-              </p>
-              <p>{blog.frontmatter.description}</p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <GridItems contents={contents} />
   </section>
 </Layout>
 
@@ -49,12 +30,5 @@ const title = 'ブログ一覧';
   section {
     display: grid;
     gap: 1rem;
-  }
-
-  .tag {
-    padding-right: 0.5rem;
-    &::before {
-      content: '#';
-    }
   }
 </style>
