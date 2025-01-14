@@ -1,4 +1,5 @@
 ---
+import GridItems from '../components/GridItems.astro';
 import Layout from '/src/layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -8,7 +9,7 @@ export async function getStaticPaths() {
   ];
 
   return uniqueTags.map((tag: any) => {
-    const filteredPosts = allPosts
+    const contents = allPosts
       .filter((post) => post.frontmatter.tags.includes(tag))
       .sort(
         (a, b) =>
@@ -17,34 +18,19 @@ export async function getStaticPaths() {
       );
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { posts: contents },
     };
   });
 }
 
 const { tag } = Astro.params;
-const filteredPosts = Astro.props.posts;
+const contents = Astro.props.posts;
 ---
 
 <Layout title={`${tag}の一覧`}>
   <section>
     <h1>{tag}についての記事</h1>
-    <ul class="grid-items">
-      {
-        filteredPosts.map((post: any) => (
-          <li>
-            <a href={post.url}>
-              <img
-                src={post.frontmatter.image}
-                alt={`${post.frontmatter.title}の画像`}
-              />
-              <h3>{post.frontmatter.title}</h3>
-              <p>{post.frontmatter.description}</p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <GridItems contents={contents} />
   </section>
 </Layout>
 

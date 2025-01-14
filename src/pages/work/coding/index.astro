@@ -11,7 +11,7 @@ interface Frontmatter {
 }
 
 const contents = (
-  await Astro.glob<Frontmatter>('/src/pages/work/**/*.mdx')
+  await Astro.glob<Frontmatter>('/src/pages/work/coding/*.mdx')
 ).sort(
   (a, b) =>
     new Date(b.frontmatter.date).getTime() -

@@ -2,8 +2,8 @@
 import '/src/assets/css/reset.css';
 import '/src/assets/css/font.css';
 
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from '/src/components/Header.astro';
+import Footer from '/src/components/Footer.astro';
 const { frontmatter } = Astro.props;
 ---
 
@@ -31,6 +31,28 @@ const { frontmatter } = Astro.props;
           <p class="date">{frontmatter.date}</p>
         </hgroup>
         <div class="contents">
+          <p>{frontmatter.description}</p>
+          {
+            frontmatter.detail && (
+              <ul id="detail">
+                {Object.entries(frontmatter.detail).map(([key, value]) => (
+                  <li>
+                    <p>{key}</p>
+                    <p>{value}</p>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+          {
+            frontmatter.href &&
+              Object.entries(frontmatter.href).map(([key, value]) => (
+                <a class="btn" href={value} target="_blank">
+                  {key}
+                </a>
+              ))
+          }
+          <hr />
           <slot />
         </div>
       </article>
@@ -69,10 +91,10 @@ const { frontmatter } = Astro.props;
     width: 100%;
     height: auto;
     border-radius: 0.5rem;
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
   .contents img {
-    padding-block: 2rem;
+    margin-block: 2rem;
   }
 
   a {
@@ -83,21 +105,12 @@ const { frontmatter } = Astro.props;
       text-decoration: underline;
     }
   }
+
   p {
     line-height: 2;
   }
-
-  .contents {
-    ul {
-      padding-block: 1rem;
-    }
-
-    li {
-      list-style: disc;
-      line-height: 2;
-      font-size: 1rem;
-      margin-left: 1.25em;
-    }
+  hr {
+    margin-block: 2rem;
   }
 
   hgroup {
@@ -120,7 +133,7 @@ const { frontmatter } = Astro.props;
   }
 
   strong {
-    padding: 0 0.5em;
+    padding: 0 0.5rem;
     background: #000;
     color: #fff;
   }
@@ -139,5 +152,64 @@ const { frontmatter } = Astro.props;
   }
   .date {
     font-size: 0.75rem;
+  }
+  #detail {
+    display: grid;
+    li {
+      list-style: none;
+      margin: 0;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: span 2;
+      p + p::before {
+        content: ':';
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  .contents {
+    ul {
+      padding-block: 1rem;
+    }
+
+    li {
+      list-style: disc;
+      line-height: 2;
+      font-size: 1rem;
+      margin-left: 1.25em;
+    }
+    a {
+      display: inline-block;
+      inline-size: fit-content;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 0 0.5rem;
+      background: #000;
+      color: #fff;
+      border: 1px solid;
+      transition:
+        color 0.3s,
+        background 0.3s;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        color: #000;
+        background: transparent;
+      }
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: var(--gap);
+      img {
+        aspect-ratio: 1/1;
+        object-fit: cover;
+      }
+    }
   }
 </style>

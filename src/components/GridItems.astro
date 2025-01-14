@@ -1,0 +1,70 @@
+---
+const { contents } = Astro.props;
+---
+
+<ul class="grid-items">
+  {
+    contents.map((content: any) => (
+      <li>
+        <a href={content.url}>
+          <img
+            src={content.frontmatter.image}
+            alt={`${content.frontmatter.title}の画像`}
+          />
+          <h3>{content.frontmatter.title}</h3>
+          <p class="tags">
+            {content.frontmatter.tags.map((tag: any) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </p>
+          <p class="desc">{content.frontmatter.description}</p>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .tag {
+    padding-right: 0.5rem;
+    height: fit-content;
+    &::before {
+      content: '#';
+    }
+  }
+  .grid-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem 1rem;
+    li {
+      a {
+        display: grid;
+        gap: 0.5rem;
+        img {
+          width: 100%;
+          aspect-ratio: 16/9;
+          background: #ccc;
+          border-radius: 0.5rem;
+        }
+        h3 {
+          font-size: 1rem;
+          line-height: 1.5;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
+        p {
+          font-size: 0.875rem;
+          font-weight: 400;
+        }
+        .desc {
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+      }
+    }
+  }
+</style>
