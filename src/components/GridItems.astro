@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 const { contents } = Astro.props;
 ---
 
@@ -7,9 +8,11 @@ const { contents } = Astro.props;
     contents.map((content: any) => (
       <li>
         <a href={content.url}>
-          <img
+          <Image
             src={content.frontmatter.image}
             alt={`${content.frontmatter.title}の画像`}
+            width="720"
+            height="480"
           />
           <h3>{content.frontmatter.title}</h3>
           <p class="tags">
@@ -42,6 +45,7 @@ const { contents } = Astro.props;
         gap: 0.5rem;
         img {
           width: 100%;
+          height: auto;
           aspect-ratio: 16/9;
           background: #ccc;
           border-radius: 0.5rem;

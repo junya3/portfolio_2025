@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import '/src/assets/css/reset.css';
 import '/src/assets/css/font.css';
 
@@ -21,7 +23,13 @@ const { frontmatter } = Astro.props;
     <main>
       <article>
         <!-- ここに挿入したい -->
-        <img src={frontmatter.image} alt={frontmatter.title} />
+        <Image
+          src={frontmatter.image}
+          alt={frontmatter.title}
+          width="720"
+          height="480"
+          id="top-image"
+        />
 
         <hgroup>
           <h2>{frontmatter.title}</h2>
@@ -90,8 +98,12 @@ const { frontmatter } = Astro.props;
   img {
     width: 100%;
     height: auto;
+    object-fit: cover;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
+    &#top-image {
+      aspect-ratio: 16/9;
+    }
   }
   .contents img {
     margin-block: 2rem;
