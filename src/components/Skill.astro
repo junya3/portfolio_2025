@@ -22,9 +22,15 @@ import { Image } from 'astro:assets';
 
 <style>
   ul {
+    container-type: inline-size;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--gap);
+
+    @media (max-width: 428px) {
+      grid-template-columns: 1fr;
+    }
+
     li {
       width: auto;
       overflow: hidden;
