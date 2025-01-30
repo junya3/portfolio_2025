@@ -30,7 +30,9 @@ import Skill from '/src/components/Skill.astro';
   }
   /* タグのスタイリング */
   #tags {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr min-content 1fr min-content 1fr;
+
     .tag-wrap {
       display: grid;
       grid-template-rows: repeat(2, min-content);
@@ -73,6 +75,21 @@ import Skill from '/src/components/Skill.astro';
             }
           }
         }
+      }
+    }
+  }
+
+  @media (max-width: 428px) {
+    #tags {
+      grid-template-columns: 1fr;
+      gap: var(--gap);
+
+      hr {
+        width: 100%;
+      }
+
+      .tag-wrap {
+        padding-inline: 1rem;
       }
     }
   }
