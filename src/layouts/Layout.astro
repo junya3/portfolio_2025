@@ -66,5 +66,9 @@ const { title } = Astro.props;
     width: auto;
     padding-inline: 2.5rem;
     position: relative;
+
+    @media (max-width: 428px) {
+      padding-inline: 1rem;
+    }
   }
 </style>
