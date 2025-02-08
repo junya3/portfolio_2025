@@ -33,5 +33,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           local-dir: "./dist/"
+          passive: true  # パッシブモードを有効にする
           max-concurrent-uploads: 10
 
