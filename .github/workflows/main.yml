@@ -25,12 +25,14 @@ jobs:
       - name: Build Project
         run: npm run build  # Astroのビルドコマンド
 
-      - name: Upload to FTP
+      - name: Deploy to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          local-dir: ./dist/
+          server-dir: "/public_html/"
+          local-dir: "./dist/"
           passive: true
+          max-concurrent-uploads: 10
+
