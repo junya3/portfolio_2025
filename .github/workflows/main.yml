@@ -26,10 +26,10 @@ jobs:
         run: npm run build  # Astroのビルドコマンド
 
       - name: Upload to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "dist/"  # Astroのビルドフォルダ
-          server-dir: "/dist/"  # アップロード先のディレクトリ
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: /dist/
