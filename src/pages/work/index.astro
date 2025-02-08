@@ -10,8 +10,8 @@ interface Frontmatter {
   image: string;
 }
 
-const contents = (
-  await Astro.glob<Frontmatter>('/src/pages/work/**/*.mdx')
+const contents = Object.values(
+  import.meta.glob<Frontmatter>('/src/pages/work/**/*.mdx', { eager: true })
 ).sort(
   (a, b) =>
     new Date(b.frontmatter.date).getTime() -
