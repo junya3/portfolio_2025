@@ -1,0 +1,137 @@
+---
+import Layout from '/src/layouts/Layout.astro';
+import SecTitle from '/src/components/SecTitle.astro';
+---
+
+<Layout title=`お問い合せフォーム`>
+  <article>
+    <section>
+      <SecTitle>お問い合わせ</SecTitle>
+      <p>
+        お問い合わせはこちらのフォームに必要事項をご記入の上、「送信」ボタンをクリックしてください。
+      </p>
+      <p>
+        当サイトはスパム防止の為、日本語の入っていない問い合わせは一切受け付けておりませんのであらかじめご了承ください。<br
+        />
+        また営業目的のご連絡につきましては一切対応いたしかねますので、何卒ご了承ください。
+      </p>
+
+      <form
+        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScY4FMtWaJiiaqpKki7AxGjCZ9JYlTX_9rueMFSdKHGEDyofA/formResponse?embedded=true"
+        target="hidden_iframe"
+        onsubmit="submitted=true;"
+        class="c-form"
+      >
+        <div class="c-form__item">
+          <label class="c-form__label" for="field-name"
+            >お名前<span class="c-form__required btn">必須</span></label
+          >
+          <input
+            name="entry.922821323"
+            class="c-form__input"
+            id="field-name"
+            placeholder="山田　太郎"
+            type="text"
+            required="required"
+          />
+        </div>
+        <div class="c-form__item">
+          <label class="c-form__label" for="field-mail"
+            >メールアドレス<span class="c-form__required btn">必須</span></label
+          >
+          <input
+            name="entry.1545767598"
+            class="c-form__input"
+            id="field-mail"
+            placeholder="sample@gmail.com"
+            type="email"
+            required="required"
+          />
+        </div>
+        <div class="c-form__item">
+          <label class="c-form__label" for="field-message"
+            >メッセージ内容<span class="c-form__required btn">必須</span></label
+          >
+          <textarea
+            name="entry.1618230991"
+            class="c-form__input"
+            id="field-message"
+            placeholder="お問い合わせ内容"
+            rows="15"
+            required></textarea>
+        </div>
+        <div class="c-form__submit">
+          <button type="submit" class="btn" style="font-weight: var(--bold);"
+            >送信する</button
+          >
+        </div>
+      </form>
+      <script type="text/javascript">
+        let submitted = false;
+      </script>
+      <iframe
+        name="hidden_iframe"
+        id="hidden_iframe"
+        style="display: none"
+        onload="if(submitted){window.location='/thanks/';}"></iframe>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  form {
+    padding-block: 1rem;
+    width: min(100%, 500px);
+
+    display: grid;
+    gap: 1rem;
+  }
+
+  .c-form__item {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .c-form__label {
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+    font-size: 1rem;
+
+    span {
+      padding: 0.5rem 1rem;
+      background: var(--text-black);
+      color: #fff;
+      font-size: 0.75rem;
+      border-radius: 0.2rem;
+    }
+  }
+
+  .c-form__input {
+    padding: 0.5rem;
+    border: none;
+    background: color-mix(in srgb, #333 8%, #0000);
+    resize: vertical;
+  }
+
+  .btn {
+    inline-size: fit-content;
+    padding: 0.5rem 1rem;
+    background: #333;
+    color: #fff;
+    transition:
+      color 0.2s,
+      background 0.2s;
+    border: 1px solid #333;
+    border-radius: 0.2rem;
+
+    &:hover {
+      background: #efefef;
+      color: #333;
+    }
+  }
+</style>
