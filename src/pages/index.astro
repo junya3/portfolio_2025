@@ -4,8 +4,7 @@ import FirstSec from '/src/components/FirstSec.astro';
 import CodingTags from '/src/components/tags/CodingTags.astro';
 import DesignTags from '/src/components/tags/DesignTags.astro';
 import BlogTags from '/src/components/tags/BlogTags.astro';
-import SecTitle from '/src/components/SecTitle.astro';
-import Skill from '/src/components/Skill.astro';
+import ComingSoon from '../components/ComingSoon.astro';
 ---
 
 <Layout title="トップページ">
@@ -15,10 +14,7 @@ import Skill from '/src/components/Skill.astro';
     <DesignTags title="design" url="/work/design/" />
     <BlogTags title="blog" url="/blog/" />
   </section>
-  <section>
-    <SecTitle>私にできること</SecTitle>
-    <Skill />
-  </section>
+  <ComingSoon />
 </Layout>
 
 <style>
