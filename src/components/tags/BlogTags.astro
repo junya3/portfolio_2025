@@ -9,9 +9,16 @@ interface Frontmatter {
 // titleやurlを取得
 const { title, url } = Astro.props;
 
-// mdファイルを取得
-const items = await Astro.glob<Frontmatter>('/src/pages/blog/*.mdx');
+// // mdファイルを取得(旧バージョン)
+// const items = await Astro.glob<Frontmatter>('/src/pages/blog/*.mdx');
 
+// // タグを取得(旧バージョン)
+// const allTags = items.map((item) => item.frontmatter.tags).flat();
+
+// // mdファイルを取得
+const items = Object.values(
+  import.meta.glob<Frontmatter>('/src/pages/blog/*.mdx', { eager: true })
+);
 // タグを取得
 const allTags = items.map((item) => item.frontmatter.tags).flat();
 
