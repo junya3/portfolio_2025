@@ -94,6 +94,9 @@ const { frontmatter } = Astro.props;
     width: min(100% - 5rem, 600px);
     padding-inline: 2.5rem;
     margin-inline: auto;
+    @media (max-width: 768px) {
+      padding-inline: 1rem;
+    }
   }
   img {
     width: 100%;
