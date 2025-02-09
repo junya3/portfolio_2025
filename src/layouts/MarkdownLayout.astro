@@ -73,7 +73,7 @@ const { frontmatter } = Astro.props;
           {
             frontmatter.href &&
               Object.entries(frontmatter.href).map(([key, value]) => (
-                <a class="btn" href={value} target="_blank">
+                <a class="btn" href={value as string} target="_blank">
                   {key}
                 </a>
               ))

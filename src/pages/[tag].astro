@@ -2,23 +2,27 @@
 import GridItems from '../components/GridItems.astro';
 import Layout from '/src/layouts/Layout.astro';
 
+interface Frontmatter {
+  date: string;
+  frontmatter: {
+    tags: string[];
+    title: string; // 他に必要なプロパティがあれば追加
+  };
+}
+
 export async function getStaticPaths() {
   const allPosts = Object.values(
-    import.meta.glob('/src/pages/**/*.mdx', { eager: true })
+    import.meta.glob<Frontmatter>('/src/pages/**/*.mdx', { eager: true })
   );
 
-  const uniqueTags: any = [
+  const uniqueTags = [
     ...new Set(allPosts.map((item) => item.frontmatter.tags).flat()),
   ];
 
-  return uniqueTags.map((tag: any) => {
+  return uniqueTags.map((tag) => {
     const contents = allPosts
       .filter((post) => post.frontmatter.tags.includes(tag))
-      .sort(
-        (a, b) =>
-          new Date(b.frontmatter.date).getTime() -
-          new Date(a.frontmatter.date).getTime()
-      );
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     return {
       params: { tag },
       props: { posts: contents },
