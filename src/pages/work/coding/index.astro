@@ -11,12 +11,8 @@ interface Frontmatter {
 }
 
 const contents = Object.values(
-  import.meta.glob('/src/pages/work/coding/*.mdx', { eager: true })
-).sort(
-  (a, b) =>
-    new Date(b.frontmatter.date).getTime() -
-    new Date(a.frontmatter.date).getTime()
-);
+  import.meta.glob<Frontmatter>('/src/pages/work/coding/*.mdx', { eager: true })
+).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const title = '制作物一覧';
 ---

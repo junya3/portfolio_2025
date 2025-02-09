@@ -2,8 +2,9 @@
 // mdファイルを読み込むための型定義
 interface Frontmatter {
   title: string;
-  description?: string;
-  tags: string[];
+  frontmatter: {
+    tags: string[];
+  };
 }
 
 // titleやurlを取得
