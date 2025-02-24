@@ -10,29 +10,29 @@ const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang='ja'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
     <link
-      rel="icon"
-      type="image/png"
-      href="/favicon/favicon-96x96.png"
-      sizes="96x96"
+      rel='icon'
+      type='image/png'
+      href='/favicon/favicon-96x96.png'
+      sizes='96x96'
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel='icon' type='image/svg+xml' href='/favicon/favicon.svg' />
+    <link rel='shortcut icon' href='/favicon/favicon.ico' />
     <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicon/apple-touch-icon.png"
+      rel='apple-touch-icon'
+      sizes='180x180'
+      href='/favicon/apple-touch-icon.png'
     />
-    <meta name="apple-mobile-web-app-title" content="junya03.com" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <meta name='apple-mobile-web-app-title' content='junya03.com' />
+    <link rel='manifest' href='/favicon/site.webmanifest' />
 
     <meta
-      name="description"
-      content="コーヒーを愛するフロントエンドエンジニアとして、日常生活やこれまでの制作物を紹介しています。制作事例では作品の詳細を、ブログでは趣味や技術に関する記事を掲載しています。"
+      name='description'
+      content='コーヒーを愛するフロントエンドエンジニアとして、日常生活やこれまでの制作物を紹介しています。制作事例では作品の詳細を、ブログでは趣味や技術に関する記事を掲載しています。'
     />
     <title>Junya03 | {frontmatter.title}</title>
   </head>
@@ -44,23 +44,23 @@ const { frontmatter } = Astro.props;
         <Image
           src={frontmatter.image}
           alt={frontmatter.title}
-          width="720"
-          height="480"
-          id="top-image"
+          width='720'
+          height='480'
+          id='top-image'
         />
 
         <hgroup>
           <h2>{frontmatter.title}</h2>
-          <p class="hash">
+          <p class='hash'>
             {frontmatter.tags.map((tag: any) => <a href={`/${tag}`}>{tag}</a>)}
           </p>
-          <p class="date">{frontmatter.date}</p>
+          <p class='date'>{frontmatter.date}</p>
         </hgroup>
-        <div class="contents">
+        <div class='contents'>
           <p>{frontmatter.description}</p>
           {
             frontmatter.detail && (
-              <ul id="detail">
+              <ul id='detail'>
                 {Object.entries(frontmatter.detail).map(([key, value]) => (
                   <li>
                     <p>{key}</p>
@@ -73,7 +73,7 @@ const { frontmatter } = Astro.props;
           {
             frontmatter.href &&
               Object.entries(frontmatter.href).map(([key, value]) => (
-                <a class="btn" href={value as string} target="_blank">
+                <a class='btn' href={value as string} target='_blank'>
                   {key}
                 </a>
               ))
@@ -88,83 +88,19 @@ const { frontmatter } = Astro.props;
 </html>
 
 <style is:inline>
-  :root {
-    --sm-width: 428px;
-    --lg-width: 960px;
+  /* parts style */
 
-    --gap: 0.75rem;
-
-    --text-black: #333;
-  }
-
-  html {
-    font-family: 'LINESeedJP_OTF', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.5;
-    letter-spacing: 0.04;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-
-    background: #efefef;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  main {
-    padding-block: 1.5rem;
-    display: grid;
-    gap: 3.75rem;
-  }
-  article {
-    width: min(100% - 5rem, 600px);
-    margin-inline: auto;
-    @media (max-width: 768px) {
-      width: min(100% - 2rem, 600px);
-    }
-  }
-  button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 0;
-    appearance: none;
-  }
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+  pre {
+    padding: 1rem;
     border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    &#top-image {
-      aspect-ratio: 16/9;
-    }
+    overflow-x: scroll;
+    margin-block: 1rem;
+    line-height: 1.5;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .contents img {
-    margin-block: 2rem;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-
-  p {
-    line-height: 2;
-  }
-  hr {
-    margin-block: 2rem;
-  }
-
-  hgroup {
-    padding-bottom: 1rem;
+  code .line span {
+    text-wrap: wrap;
   }
 
   h2 {
@@ -180,6 +116,21 @@ const { frontmatter } = Astro.props;
     margin-block: 1rem;
     border-left: 8px solid;
     border-bottom: 1px solid;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding-block: 0.5rem;
+    line-height: 1.5;
+    display: flex;
+    gap: 1rem;
+    &::before {
+      content: '『';
+    }
+    &::after {
+      content: '』';
+    }
   }
 
   strong {
@@ -261,5 +212,85 @@ const { frontmatter } = Astro.props;
         object-fit: cover;
       }
     }
+  }
+
+  /* default style */
+  :root {
+    --sm-width: 428px;
+    --lg-width: 960px;
+
+    --gap: 0.75rem;
+
+    --text-black: #333;
+  }
+
+  html {
+    font-family: 'LINESeedJP_OTF', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: 0.04;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+    background: #efefef;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  main {
+    padding-block: 1.5rem;
+    display: grid;
+    gap: 3.75rem;
+  }
+  article {
+    width: min(100% - 5rem, 600px);
+    margin-inline: auto;
+    @media (max-width: 768px) {
+      width: min(100% - 2rem, 600px);
+    }
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    &#top-image {
+      aspect-ratio: 16/9;
+    }
+  }
+  .contents img {
+    margin-block: 2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    line-height: 2;
+  }
+  hr {
+    margin-block: 2rem;
+  }
+
+  hgroup {
+    padding-bottom: 1rem;
   }
 </style>
