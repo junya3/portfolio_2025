@@ -1,0 +1,339 @@
+---
+layout: ../../layouts/MarkdownLayout.astro
+image: '/image/blog/2025_04.png'
+title: 【Pug】HTMLテンプレートエンジン
+date: '2025-04-20'
+tags: [monthly, study, cording, html]
+description: こんにちは、今回はHTMLのテンプレートエンジン、「Pug」についてのお話です。使ってみて学習コストが低く、今すぐ便利に導入ができるなと感じたので共有させてください！
+---
+
+### Pug とは？
+
+Pug（パグ）は、HTML をもっとシンプルで読みやすく書けるテンプレートエンジンのひとつです。
+昔は「Jade（ジェイド）」という名前だったそうですが、商標の関係で現在は「Pug」と呼ばれています。
+
+個人的に使っていて感じたのは、<span style="font-weight:600;">こんなに便利なのに学習コストがものすごく低かったことです。</span>
+
+**これからポートフォリオをつくる人にもおすすめです！**
+
+初学者の方でも使いやすいものが多くあるので、ぜひ使ってみてください！
+
+### Pug の便利機能
+
+Pug にはいくつかの特徴がありますが、初級編、中級編、上級編に分けてお話をさせていただきます。<span style="font-weight:600;">便利な部分は強調しておきますね！</span>
+
+#### 初級編
+
+- HTML タグを省略できる！
+- 他のファイルを**コンポーネントとして読み込める！**
+
+#### 中級編
+
+- **変数**や**配列**が使える！
+- **繰り返し処理**や**条件分岐**が行える！
+
+#### 上級編
+
+- コンポーネントに**引数**を与えることができる！
+- block / extends を使ってレイアウトが作れる！
+
+### インストール、コンパイルの仕方
+
+ここまで見て使いたくなった人はインストールしてみよう！
+Pug は <span style="font-weight:600;"> npm（Node Package Module）</span>経由でダウンロードすることができます。
+
+まだ Node.js が PC に入っていない人はダウンロードしてきてね！
+
+```
+% npm install pug
+```
+
+新しいプロジェクトを作成し、index.pug を作ったらそれを「コンパイル」といって HTML に変換を行うだけ！
+
+下記をプロジェクトフォルダの直下のターミナルで実行してください。
+
+```
+% pug index.pug
+```
+
+すると HTML ファイルがコンパイルされて使うことができます！
+
+### 初級編
+
+#### HTML タグを省略できる！
+
+Pug は<span style="font-weight:600;">インデント（字下げ）</span>で要素の階層を表すことができます。記述量が少なく、構造もわかりやすく見えます。
+
+HTML を書くことに慣れていると逆に見にくいですが…頑張りましょう。
+
+<br />
+
+Pug
+
+```
+ul
+  li りんご
+  li みかん
+  li バナナ
+```
+
+変換後の HTML
+
+```
+<ul>
+  <li>りんご</li>
+  <li>みかん</li>
+  <li>バナナ</li>
+</ul>
+```
+
+<br />
+
+#### 他のファイルをコンポーネントとして読み込める！
+
+ヘッダーやフッター、ページのタイトルなど、他のページでもよく使うパーツってありますよね？
+
+Pug ではそういったパーツを別ファイルとして管理することができます！**一行書くだけで他のパーツが利用できる**のは便利でいいですよね！
+
+また常用パーツの修正が入ってもコンポーネントのみを修正で済むので、管理も非常に楽です。
+
+フレームワークなど学習コストが掛かるものに比べて、とても簡単に実装ができる点には感動しました！
+
+<br />
+
+Pug Header.pug
+
+```
+//- ./components/Header.pug
+
+header
+  h1.logo Pug
+  nav
+    ul
+      li
+        a(href="#home") ホーム
+      li
+        a(href="#about") 私たちについて
+      li
+        a(href="#contact") お問い合わせ
+```
+
+Pug Footer.pug
+
+```
+//- ./components/Footer.pug
+footer
+  small
+    p.copyright &copy; junya03.com
+```
+
+Pug index.pug
+
+```
+//- index.pug
+
+//- ここに読み込むファイルを記述
+include ./components/Header.pug
+
+main
+  h2 includeの使い方
+  p  includeのあとにファイルのパスを記述します。
+
+//- ここに読み込むファイルを記述
+include ./components/Footer.pug
+```
+
+<span style='font-weight:600;'>
+  HTML に変換されるとすべてまとまってくれる！
+</span>
+
+変換後の HTML
+
+```
+<header>
+  <h1 class="logo">Pug</h1>
+  <nav>
+    <ul>
+      <li><a href="#home">ホーム</a></li>
+      <li><a href="#about">私たちについて</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h2>includeの使い方</h2>
+  <p>includeのあとにファイルのパスを記述します。</p>
+</main>
+<footer>
+  <small><p class="copyright">&copy; junya03.com</p></small>
+</footer>
+
+```
+
+### 中級編
+
+#### 変数や配列が使える！
+
+これはまんまですね。JS のように変数を定義、管理することができます。
+必ず「-」を入れてから定義、使うときは#{}を使いましょう。
+
+Pug
+
+```
+- let title = "Pugについての説明";
+- let fruitArry = ["りんご","バナナ","みかん"];
+
+h2 #{title}
+p  #{fruitArry}
+
+```
+
+変換後の HTML
+
+```
+<h2>Pugについての説明</h2>
+<p>りんご,バナナ,みかん</p>
+
+```
+
+<br />
+
+#### 繰り返し処理や条件分岐が行える！
+
+先ほど定義した配列などを展開することができます。これが行えることでより記述を短くすることができるようになります。また条件をつけて分岐を行うこともできます。
+header などのリスト管理に行うと便利ですね！（オブジェクトでも管理ができますが、一行でないとエラーを吐くので注意してください）
+
+Pug
+
+```
+- let fruitArry = ["りんご","バナナ","みかん"];
+
+//- fruitArryを繰り返して展開してください。
+ul
+  each fruit in fruitArry
+    //- もしバナナじゃなければ表示
+    if (fruit !== "バナナ")
+      li #{fruit}
+```
+
+変換後の HTML
+
+```
+<ul>
+  <li>りんご</li>
+  <li>みかん</li>
+</ul>
+
+```
+
+### 上級編
+
+#### コンポーネントに引数を与えることができる！
+
+使う用途は同じだけど…中身が少し違う…そうなると初級の include じゃパーツとして扱えないんですよね。実は Pug はコンポーネントに引数を渡すことができるんです！
+mixin という機能を使うと、コンポーネントに情報を渡すことができます。React や Astro のように使えて便利です。
+
+Pug Title.pug
+
+```
+//- ./components/Title.pug
+mixin Title(title,subTitle)
+  hgroup
+    h2 #{title}について
+    p  #{subTitle}
+```
+
+Pug index.pug
+
+```
+section
+  include ./components/Title.pug
+  //- 1つ目にtitleへ代入する値、2つ目にsubTitleに代入する値を入れよう
+  +Title ("mixin","コンポーネントに引数を渡そう！")
+```
+
+変換後の HTML
+
+```
+<section>
+  <hgroup>
+    <h2>mixinについて</h2>
+    <p>コンポーネントに引数を渡そう！</p>
+  </hgroup>
+</section>
+```
+
+<br />
+
+#### block / extends を使ってテンプレートレイアウトが作れる！
+
+block / extends を使うと共通のレイアウトファイルを定義して、個別ページで拡張（extends）することで、共通パーツを使い回すことができます！block に続く名前は自分の好きなものを定義できます。
+
+Pug Layout.pug
+
+```
+//- ./layouts/Layout.pug
+doctype html
+html
+  head
+    //- ここにscriptを差し込む
+    block scripts
+    title Site | #{pageTitle}
+  body
+    include ../components/Header.pug
+    main
+      //- ここにindex.pugを差し込む
+      block content
+    include ../components/Footer.pug
+```
+
+Pug index.pug
+
+```
+// どこから読み込むか
+extends ./layouts/Layout.pug
+
+//- 差し込むscriptを定義
+block scripts
+  - const pageTitle = 'ホーム'
+
+block content
+  h2 ようこそ
+  p これはトップページです。
+
+```
+
+変換後の HTML
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Site | ホーム</title>
+  </head>
+  <body>
+    <header>
+      〜中略〜
+    </header>
+    <main>
+      <h2>ようこそ</h2>
+      <p>これはトップページです。</p>
+    </main>
+    <footer>
+      〜中略〜
+    </footer>
+  </body>
+</html>
+```
+
+<br />
+
+### まとめ
+
+いかがでしたでしょうか？今回は Pug についてご紹介しました。
+
+LP 作成であるとあまり効果を感じられないですが、ページ数が多くなれば多くなるほど管理がしやすく、開発が楽になります。
+
+HTML はもちろん、JavaScript の変数の知識をある程度理解している必要はあるかと思いますが、それを考えても非常に学習コストが少なく、導入しやすいテンプレートエンジンに感じました。
+また便利そうなものがあればご紹介できればと思います。
+それではまた来月…。
