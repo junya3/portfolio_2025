@@ -98,9 +98,18 @@ const { frontmatter } = Astro.props;
     line-height: 1.5;
     width: 100%;
     box-sizing: border-box;
+    code {
+      background: none;
+    }
   }
   code .line span {
     text-wrap: wrap;
+  }
+  code {
+    background: color-mix(in srgb, #ccc 40%, #0000);
+    padding-inline: 0.2em;
+    border-radius: 4px;
+    font-size: 0.875rem;
   }
 
   h2 {
