@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 const { contents } = Astro.props;
 ---
 
-<ul class="grid-items">
+<ul class='grid-items'>
   {
     contents.map((content: any) => (
       <li>
@@ -11,16 +11,16 @@ const { contents } = Astro.props;
           <Image
             src={content.frontmatter.image}
             alt={`${content.frontmatter.title}の画像`}
-            width="720"
-            height="480"
+            width='720'
+            height='480'
           />
           <h3>{content.frontmatter.title}</h3>
-          <p class="tags">
-            {content.frontmatter.tags.map((tag: any) => (
-              <span class="tag">{tag}</span>
+          <p class='tags'>
+            {content.frontmatter.tags.map((tag: string) => (
+              <span class='tag'>{tag}</span>
             ))}
           </p>
-          <p class="desc">{content.frontmatter.description}</p>
+          <p class='desc'>{content.frontmatter.description}</p>
         </a>
       </li>
     ))
@@ -36,6 +36,8 @@ const { contents } = Astro.props;
     }
   }
   .grid-items {
+    width: min(100%, 1280px);
+    margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem 1rem;
